@@ -1,22 +1,11 @@
 
 skillMetadata:
   sections:
-    - name: Options << Name of section
+    - name: Devices
       fields:
-        - name: internal_python_variable_name
+        - name: DeviceList
           type: text
-          label: Setting Friendly Display Name
+          label: List of Devices separated by ';'. Fomat='Name(MAC-Address)'. Example Computer(01-23-45-a6-b7-c8);NAS(10-32-9d-0f-12-23)
           value: ""
-          placeholder: demo prompt in the input box
-    - name: Login << Name of another section
-      fields:
-        - type: label
-          label: Just a little bit of extra info for the user to understand following settings
-        - name: username
-          type: text
-          label: Username
-          value: ""
-        - name: password
-          type: password
-          label: Password
-          value: ""
+          placeholder: Computer(01-23-45-a6-b7-c8);NAS(10-32-9d-0f-12-23)
+

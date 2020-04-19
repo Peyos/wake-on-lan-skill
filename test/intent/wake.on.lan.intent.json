@@ -1,4 +1,4 @@
 {
-    "intent_type": "lan.on.wake.intent",
+    "intent_type": "wake.on.lan.intent",
     "utterance": "Please boot up my computer"
 }
