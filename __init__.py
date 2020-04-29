@@ -22,8 +22,10 @@ class WakeOnLan(MycroftSkill):
         mac = wolLogic.GetMacAddress(parsedConfig, requestedDevice)
         if(mac is None):
             self.speak_dialog('wake.on.lan.unknown.device', {'device':requestedDevice})
+            return
         if(mac is 'invalid'):
             self.speak_dialog('wake.on.lan.invalid.mac', {'device':requestedDevice})
+            return
 
         confirmation = self.ask_yesno('wake.on.lan.send.package.confirmation', {"device": requestedDevice})
         if confirmation == "yes":
