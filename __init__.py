@@ -9,8 +9,9 @@ class WakeOnLan(MycroftSkill):
     @intent_file_handler('wake.on.lan.intent')
     def handle_wake_on_lan(self, message):
         wolLogic = wol_logic()
-        rawDeviceSetting = self.settings.get('DeviceList', {})
-        if (rawDeviceSetting is None or rawDeviceSetting is {}):
+        rawDeviceSetting = self.settings.get('DeviceList')
+        self.log.debug('DeviceList = ' + rawDeviceSetting )
+        if ((rawDeviceSetting is None) or (rawDeviceSetting == '')):
             self.speak_dialog('wake.on.lan.no.devices')
 
         parsedConfig = wolLogic.ParseSettings(rawDeviceSetting)
