@@ -3,9 +3,10 @@ skillMetadata:
   sections:
     - name: Devices
       fields:
+        - type: label
+          label: List of Devices separated by ';'. Fomat='Name(MAC-Address)'. Example Computer(01-23-45-a6-b7-c8);NAS(10-32-9d-0f-12-23)
         - name: DeviceList
           type: text
-          label: List of Devices separated by ';'. Fomat='Name(MAC-Address)'. Example Computer(01-23-45-a6-b7-c8);NAS(10-32-9d-0f-12-23)
           value: ""
           placeholder: Computer(01-23-45-a6-b7-c8);NAS(10-32-9d-0f-12-23)
 
