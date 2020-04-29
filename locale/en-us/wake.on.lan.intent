@@ -1,5 +1,7 @@
 Boot my {device}
 Boot {device}
+Boot up my {device}
+Boot up {device}
 Wake up my {device}
 Wake up {device}
 Send magic package to {device}
