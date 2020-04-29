@@ -1,6 +1,6 @@
 from mycroft import MycroftSkill, intent_file_handler
 from wakeonlan import send_magic_packet
-import wol_logic
+from .wol_logic import wol_logic
 
 class WakeOnLan(MycroftSkill):
     def __init__(self):
@@ -8,7 +8,7 @@ class WakeOnLan(MycroftSkill):
 
     @intent_file_handler('wake.on.lan.intent')
     def handle_wake_on_lan(self, message):
-        wolLogic = wol_logic.wol_logic()
+        wolLogic = wol_logic()
         rawDeviceSetting = self.settings.get('DeviceList', {})
         if (rawDeviceSetting is None or rawDeviceSetting is {}):
             self.speak_dialog('wake.on.lan.no.devices')
