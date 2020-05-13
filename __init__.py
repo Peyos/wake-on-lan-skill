@@ -9,6 +9,7 @@ class WakeOnLan(MycroftSkill):
 
     @intent_file_handler('wake.on.lan.intent')
     def handle_wake_on_lan(self, message):
+        self.log.info('WakeOnLan Skill is triggered.')
         wolLogic = wol_logic()
         rawDeviceSetting = self.settings.get('DeviceList')
         self.log.debug('DeviceList = ' + rawDeviceSetting )
@@ -16,13 +17,17 @@ class WakeOnLan(MycroftSkill):
             self.speak_dialog('wake.on.lan.no.devices')
 
         parsedConfig = wolLogic.ParseSettings(rawDeviceSetting)
+        self.log.debug('Parsed Settings = ' + str(rawDeviceSetting) )
         if(parsedConfig is None or parsedConfig is {}):
             self.speak_dialog('wake.on.lan.configuration.error')
 
         requestedDevice = message.data.get('device')
-        bestMatchingDeviceFromConfig = match_one(requestedDevice, list(parsedConfig.keys()))
+        self.log.debug('Understood device = ' + requestedDevice )
+        bestMatchingDeviceFromConfig, score = match_one(requestedDevice, list(parsedConfig.keys()))
+        self.log.debug('Best matching device = ' + requestedDevice + ' (Score = ' +score )
 
         mac = wolLogic.GetMacAddress(parsedConfig, bestMatchingDeviceFromConfig)
+        self.log.debug('MAC address for the matching device = ' + mac )
         if(mac is None):
             self.speak_dialog('wake.on.lan.unknown.device', {'device':requestedDevice})
             return
