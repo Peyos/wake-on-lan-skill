@@ -1,4 +1,5 @@
 from mycroft import MycroftSkill, intent_file_handler
+from mycroft.util.parse import match_one
 from wakeonlan import send_magic_packet
 from .wol_logic import wol_logic
 
@@ -19,7 +20,9 @@ class WakeOnLan(MycroftSkill):
             self.speak_dialog('wake.on.lan.configuration.error')
 
         requestedDevice = message.data.get('device')
-        mac = wolLogic.GetMacAddress(parsedConfig, requestedDevice)
+        bestMatchingDeviceFromConfig = match_one(requestedDevice, list(parsedConfig.keys()))
+
+        mac = wolLogic.GetMacAddress(parsedConfig, bestMatchingDeviceFromConfig)
         if(mac is None):
             self.speak_dialog('wake.on.lan.unknown.device', {'device':requestedDevice})
             return
