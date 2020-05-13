@@ -24,7 +24,7 @@ class WakeOnLan(MycroftSkill):
         requestedDevice = message.data.get('device')
         self.log.debug('Understood device = ' + requestedDevice )
         bestMatchingDeviceFromConfig, score = match_one(requestedDevice, list(parsedConfig.keys()))
-        self.log.debug('Best matching device = ' + requestedDevice + ' (Score = ' +score )
+        self.log.debug('Best matching device = ' + requestedDevice + ' (Score = ' + str(score) )
 
         mac = wolLogic.GetMacAddress(parsedConfig, bestMatchingDeviceFromConfig)
         self.log.debug('MAC address for the matching device = ' + mac )
