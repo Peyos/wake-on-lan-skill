@@ -32,14 +32,14 @@ class WakeOnLan(MycroftSkill):
             self.speak_dialog('wake.on.lan.unknown.device', {'device':requestedDevice})
             return
         if(mac is 'invalid'):
-            self.speak_dialog('wake.on.lan.invalid.mac', {'device':requestedDevice})
+            self.speak_dialog('wake.on.lan.invalid.mac', {'device':bestMatchingDeviceFromConfig})
             return
 
-        confirmation = self.ask_yesno('wake.on.lan.send.package.confirmation', {"device": requestedDevice})
+        confirmation = self.ask_yesno('wake.on.lan.send.package.confirmation', {"device": bestMatchingDeviceFromConfig})
         if confirmation == "yes":
             try:
                 send_magic_packet(mac)
-                self.speak_dialog('wake.on.lan.success', {"device": requestedDevice})
+                self.speak_dialog('wake.on.lan.success', {"device": bestMatchingDeviceFromConfig})
 
             except Exception:
                 self.speak_dialog('wake.on.lan.send.package.error')
